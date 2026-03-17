@@ -1,15 +1,15 @@
 # Implementation Plan - Track: Build MVP Core
 
 ## Phase 1: Project Setup & Design System
-- [ ] Task: Initialize Project Structure & Configuration
-    - [ ] Create `components/`, `lib/`, `types/`, `data/` directories.
-    - [ ] Configure `tailwind.config.ts` with custom colors (`Luxe Mint`, `Mosque`) and fonts (`Geist`, `Inter`).
-    - [ ] Create `data/properties.json` with realistic mock data for at least 5 luxury properties.
-- [ ] Task: Base UI Components (Atoms)
-    - [ ] Create `Button` component (variants: primary, outline, ghost).
-    - [ ] Create `Input` component (text, password, search).
-    - [ ] Create `Card` component (base container style).
-- [ ] Task: Conductor - User Manual Verification 'Project Setup & Design System' (Protocol in workflow.md)
+- [x] Task: Initialize Project Structure & Configuration
+    - [x] Create `components/`, `lib/`, `types/`, `data/` directories.
+    - [x] Configure `tailwind.config.ts` with custom colors (`Luxe Mint`, `Mosque`) and fonts (`Geist`, `Inter`).
+    - [x] Create `data/properties.json` with realistic mock data for at least 5 luxury properties.
+- [x] Task: Base UI Components (Atoms)
+    - [x] Create `Button` component (variants: primary, outline, ghost).
+    - [x] Create `Input` component (text, password, search).
+    - [x] Create `Card` component (base container style).
+- [x] Task: Conductor - User Manual Verification 'Project Setup & Design System' (Protocol in workflow.md)
 
 ## Phase 2: Landing Page Implementation
 - [ ] Task: Hero Section
