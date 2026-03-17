@@ -19,7 +19,7 @@ export const SignupForm: React.FC = () => {
     try {
       await signup(formData.name, formData.email, formData.password)
       router.push('/dashboard')
-    } catch (err) {
+    } catch {
       setError('Failed to create account')
     }
   }

@@ -41,17 +41,17 @@
 - [x] Task: Conductor - User Manual Verification 'Property Details Page' (Protocol in workflow.md)
 
 ## Phase 4: Authentication & Dashboard
-- [ ] Task: Mock Authentication Logic
-    - [ ] Create `lib/auth.ts` (or context) to manage mock session state.
-    - [ ] Implement `login`, `logout`, and `signup` functions (simulated delay).
-- [ ] Task: Auth Forms
-    - [ ] Write Test: Verify login form submission handling.
-    - [ ] Implement `LoginForm` and `SignupForm` components.
-- [ ] Task: User Dashboard
-    - [ ] Create `app/dashboard/page.tsx`.
-    - [ ] Implement protected route logic (redirect if not logged in).
-    - [ ] Display user profile and mock "Saved Properties".
-- [ ] Task: Conductor - User Manual Verification 'Authentication & Dashboard' (Protocol in workflow.md)
+- [x] Task: Mock Authentication Logic
+    - [x] Create `lib/auth.ts` (or context) to manage mock session state.
+    - [x] Implement `login`, `logout`, and `signup` functions (simulated delay).
+- [x] Task: Auth Forms
+    - [x] Write Test: Verify login form submission handling.
+    - [x] Implement `LoginForm` and `SignupForm` components.
+- [x] Task: User Dashboard
+    - [x] Create `app/dashboard/page.tsx`.
+    - [x] Implement protected route logic (redirect if not logged in).
+    - [x] Display user profile and mock "Saved Properties".
+- [x] Task: Conductor - User Manual Verification 'Authentication & Dashboard' (Protocol in workflow.md)
 
 ## Phase 5: Verification & Polish
 - [ ] Task: End-to-End Walkthrough

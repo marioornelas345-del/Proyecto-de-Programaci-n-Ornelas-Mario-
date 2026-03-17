@@ -19,7 +19,7 @@ export const LoginForm: React.FC = () => {
     try {
       await login(formData.email, formData.password)
       router.push('/dashboard')
-    } catch (err) {
+    } catch {
       setError('Invalid email or password')
     }
   }
