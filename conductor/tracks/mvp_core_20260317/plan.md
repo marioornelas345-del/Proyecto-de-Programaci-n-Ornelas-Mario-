@@ -12,18 +12,18 @@
 - [x] Task: Conductor - User Manual Verification 'Project Setup & Design System' (Protocol in workflow.md)
 
 ## Phase 2: Landing Page Implementation
-- [ ] Task: Hero Section
-    - [ ] Write Test: Verify Hero renders with title, subtitle, and CTA.
-    - [ ] Implement `Hero` component with background image/video support.
-- [ ] Task: Featured Listings Grid
-    - [ ] Write Test: Verify it renders a list of property cards.
-    - [ ] Implement `FeaturedListings` component fetching data from `data/properties.json`.
-- [ ] Task: Search Functionality (Client Component)
-    - [ ] Write Test: Verify input accepts text and triggers search action.
-    - [ ] Implement `SearchBar` component.
-- [ ] Task: Compose Landing Page
-    - [ ] Assemble `app/page.tsx` with Hero, Search, and Featured Listings.
-- [ ] Task: Conductor - User Manual Verification 'Landing Page Implementation' (Protocol in workflow.md)
+- [x] Task: Hero Section
+    - [x] Write Test: Verify Hero renders with title, subtitle, and CTA.
+    - [x] Implement `Hero` component with background image/video support.
+- [x] Task: Featured Listings Grid
+    - [x] Write Test: Verify it renders a list of property cards.
+    - [x] Implement `FeaturedListings` component fetching data from `data/properties.json`.
+- [x] Task: Search Functionality (Client Component)
+    - [x] Write Test: Verify input accepts text and triggers search action.
+    - [x] Implement `SearchBar` component.
+- [x] Task: Compose Landing Page
+    - [x] Assemble `app/page.tsx` with Hero, Search, and Featured Listings.
+- [x] Task: Conductor - User Manual Verification 'Landing Page Implementation' (Protocol in workflow.md)
 
 ## Phase 3: Property Details Page
 - [ ] Task: Dynamic Route Setup
