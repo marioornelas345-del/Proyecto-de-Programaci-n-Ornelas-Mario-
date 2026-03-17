@@ -26,19 +26,19 @@
 - [x] Task: Conductor - User Manual Verification 'Landing Page Implementation' (Protocol in workflow.md)
 
 ## Phase 3: Property Details Page
-- [ ] Task: Dynamic Route Setup
-    - [ ] Create `app/property/[id]/page.tsx` and `layout.tsx`.
-    - [ ] Implement `generateStaticParams` (optional for SSG) or dynamic fetching logic.
-- [ ] Task: Image Gallery Component
-    - [ ] Write Test: Verify gallery renders main image and thumbnails.
-    - [ ] Implement `ImageGallery` component.
-- [ ] Task: Property Details Layout
-    - [ ] Write Test: Verify all property details (price, address, specs) are displayed.
-    - [ ] Implement the details view with description and specs list.
-- [ ] Task: Contact Agent Form
-    - [ ] Write Test: Verify form validation and submission.
-    - [ ] Implement `ContactForm` component (logs to console on submit).
-- [ ] Task: Conductor - User Manual Verification 'Property Details Page' (Protocol in workflow.md)
+- [x] Task: Dynamic Route Setup
+    - [x] Create `app/property/[id]/page.tsx` and `layout.tsx`.
+    - [x] Implement `generateStaticParams` (optional for SSG) or dynamic fetching logic.
+- [x] Task: Image Gallery Component
+    - [x] Write Test: Verify gallery renders main image and thumbnails.
+    - [x] Implement `ImageGallery` component.
+- [x] Task: Property Details Layout
+    - [x] Write Test: Verify all property details (price, address, specs) are displayed.
+    - [x] Implement the details view with description and specs list.
+- [x] Task: Contact Agent Form
+    - [x] Write Test: Verify form validation and submission.
+    - [x] Implement `ContactForm` component (logs to console on submit).
+- [x] Task: Conductor - User Manual Verification 'Property Details Page' (Protocol in workflow.md)
 
 ## Phase 4: Authentication & Dashboard
 - [ ] Task: Mock Authentication Logic

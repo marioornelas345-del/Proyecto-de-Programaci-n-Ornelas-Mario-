@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: "Experience the peak of elite living with LuxeEstate.",
 };
 
+import { AuthProvider } from "@/lib/auth";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,10 +36,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-white`}
       >
-        <Navbar />
-        <main className="pt-20">
-          {children}
-        </main>
+        <AuthProvider>
+          <Navbar />
+          <main className="pt-20">
+            {children}
+          </main>
+        </AuthProvider>
       </body>
     </html>
   );
