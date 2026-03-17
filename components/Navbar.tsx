@@ -1,0 +1,35 @@
+import React from 'react'
+import Link from 'next/link'
+import { Button } from './Button'
+
+export const Navbar: React.FC = () => {
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-bg-light">
+      <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2">
+          <div className="w-10 h-10 bg-mosque rounded-lg flex items-center justify-center">
+            <span className="material-icons text-primary text-2xl">diamond</span>
+          </div>
+          <span className="text-2xl font-bold text-nordic-dark tracking-tight">
+            LuxeEstate
+          </span>
+        </Link>
+
+        <div className="hidden md:flex items-center gap-8">
+          <Link href="/" className="text-nordic-dark font-medium hover:text-mosque transition-colors">Buy</Link>
+          <Link href="/" className="text-nordic-dark font-medium hover:text-mosque transition-colors">Rent</Link>
+          <Link href="/" className="text-nordic-dark font-medium hover:text-mosque transition-colors">Sell</Link>
+          <Link href="/" className="text-nordic-dark font-medium hover:text-mosque transition-colors">About</Link>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <Link href="/" className="hidden sm:block text-nordic-dark font-bold hover:text-mosque transition-colors">Log In</Link>
+          <Button variant="primary" className="hidden sm:flex">Sign Up</Button>
+          <button className="md:hidden p-2 text-nordic-dark">
+            <span className="material-icons">menu</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  )
+}
