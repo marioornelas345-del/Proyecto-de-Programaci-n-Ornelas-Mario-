@@ -1,8 +1,9 @@
 import React from 'react'
 import { notFound } from 'next/navigation'
 import propertiesData from '@/data/properties.json'
-import { Button } from '@/components/Button'
 import Image from 'next/image'
+import { ImageGallery } from '@/components/ImageGallery'
+import { ContactForm } from '@/components/ContactForm'
 
 interface PropertyPageProps {
   params: Promise<{ id: string }>
@@ -21,15 +22,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         {/* Left Column: Images and Details */}
         <div className="lg:col-span-2 space-y-8">
-          <div className="relative h-[500px] w-full rounded-2xl overflow-hidden shadow-card">
-            <Image
-              src={property.images[0]}
-              alt={property.title}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
+          <ImageGallery images={property.images} />
           
           <div className="flex justify-between items-start">
             <div>
@@ -80,25 +73,11 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
           </div>
         </div>
 
-        {/* Right Column: Contact Form Placeholder */}
+        {/* Right Column: Contact Form */}
         <div className="lg:col-span-1">
           <div className="sticky top-32 bg-white p-8 rounded-2xl shadow-card border border-bg-light">
             <h3 className="text-2xl font-bold text-nordic-dark mb-6">Inquire About This Property</h3>
-            <div className="space-y-4">
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-nordic-dark">Full Name</label>
-                <input type="text" className="w-full px-4 py-2 border border-bg-light rounded-md" placeholder="John Doe" />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-nordic-dark">Email Address</label>
-                <input type="email" className="w-full px-4 py-2 border border-bg-light rounded-md" placeholder="john@example.com" />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-nordic-dark">Message</label>
-                <textarea rows={4} className="w-full px-4 py-2 border border-bg-light rounded-md" placeholder="I am interested in this property..." />
-              </div>
-              <Button className="w-full py-4 text-lg">Send Inquiry</Button>
-            </div>
+            <ContactForm />
             
             <div className="mt-8 pt-8 border-t border-bg-light">
               <div className="flex items-center gap-4">
