@@ -5,7 +5,8 @@ This file tracks all major tracks for the project. Each track has its own detail
 ---
 
 ## Active Tracks
-*(No active tracks at this time)*
+- [ ] **Track: Set up Supabase Database**
+  *Link: [./tracks/supabase_db_20260320/](./tracks/supabase_db_20260320/)*
 
 ---
 
