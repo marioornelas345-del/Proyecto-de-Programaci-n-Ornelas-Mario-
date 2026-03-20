@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 
 interface User {
   id: string
@@ -19,16 +19,19 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem('luxe_user')
-    if (storedUser) {
-      setUser(JSON.parse(storedUser))
+  const [user, setUser] = useState<User | null>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const storedUser = localStorage.getItem('luxe_user')
+        return storedUser ? JSON.parse(storedUser) : null
+      } catch (e) {
+        console.error('Failed to parse stored user:', e)
+        return null
+      }
     }
-    setIsLoading(false)
-  }, [])
+    return null
+  })
+  const [isLoading, setIsLoading] = useState(false)
 
   const login = async (email: string, password: string) => {
     console.log('Logging in with:', email, password.length > 0 ? '***' : '')
