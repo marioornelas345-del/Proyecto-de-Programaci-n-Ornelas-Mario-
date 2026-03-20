@@ -54,12 +54,15 @@
 - [x] Task: Conductor - User Manual Verification 'Authentication & Dashboard' (Protocol in workflow.md)
 
 ## Phase 5: Verification & Polish
-- [ ] Task: End-to-End Walkthrough
-    - [ ] Manually verify the full user flow: Landing -> Search -> Details -> Contact -> Login -> Dashboard.
-- [ ] Task: Performance Optimization
-    - [ ] Run Lighthouse audit on Landing and Details pages.
-    - [ ] Optimize images (use `next/image`) and fix layout shifts (CLS).
-- [ ] Task: Final Code Review
-    - [ ] Ensure all code adheres to `conductor/code_styleguides/`.
-    - [ ] Verify test coverage meets the >80% goal.
-- [ ] Task: Conductor - User Manual Verification 'Verification & Polish' (Protocol in workflow.md)
+- [x] Task: End-to-End Walkthrough
+    - [x] Manually verify the full user flow: Landing -> Search -> Details -> Contact -> Login -> Dashboard.
+- [x] Task: Performance Optimization
+    - [x] Run Lighthouse audit on Landing and Details pages.
+    - [x] Optimize images (use `next/image`) and fix layout shifts (CLS).
+- [x] Task: Final Code Review
+    - [x] Ensure all code adheres to `conductor/code_styleguides/`.
+    - [x] Verify test coverage meets the >80% goal.
+- [x] Task: Conductor - User Manual Verification 'Verification & Polish' (Protocol in workflow.md)
+
+## Phase: Review Fixes
+- [x] Task: Apply review suggestions 49c3e1c
