@@ -16,6 +16,8 @@
 
 ## Development & Tooling
 - **ESLint 9.x**: For maintaining code quality and adhering to Next.js best practices.
+- **Vitest 4.x**: For running unit and component tests with a fast, Vite-native experience.
+- **React Testing Library**: For testing React components from the user's perspective.
 - **Node.js 20+**: The required runtime environment for the project.
 
 ## Architecture

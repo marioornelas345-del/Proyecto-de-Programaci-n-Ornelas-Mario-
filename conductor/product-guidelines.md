@@ -40,6 +40,7 @@ The interface must reflect the quality of the properties it showcases.
 - **Accessibility (WCAG Compliance)**: Ensure high contrast, readable typography, and full keyboard/screen reader support for all interactive elements.
 
 ## Development Conventions
-1. **Material Symbols**: Use Material Symbols Outlined for UI icons.
-2. **PRD Alignment**: Always refer to `prd/resource/` for visual and structural guidance before implementation.
-3. **Component Modularity**: Build reusable, self-contained components that adhere to the established design tokens.
+1. **Icons**: Use Material Symbols Outlined and Material Icons for UI elements.
+2. **Imagery**: Prioritize high-quality, professional photography. Use reliable sources like Unsplash (configured in `next.config.ts`) for mock data.
+3. **PRD Alignment**: Always refer to `prd/resource/` for visual and structural guidance before implementation.
+4. **Component Modularity**: Build reusable, self-contained components that adhere to the established design tokens.

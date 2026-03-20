@@ -29,7 +29,7 @@ For each task in a plan, follow this cycle:
     - `chore: ...` for maintenance tasks
 
 ## Testing Standards
-- **Framework**: Jest / React Testing Library (or project default).
+- **Framework**: Vitest / React Testing Library.
 - **Coverage Goal**: >80% code coverage for critical paths.
 - **Unit Tests**: Required for all utility functions and complex logic.
 - **Integration Tests**: Required for API endpoints and critical user flows.
