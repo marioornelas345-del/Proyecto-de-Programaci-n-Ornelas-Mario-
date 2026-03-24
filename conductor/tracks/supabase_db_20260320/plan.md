@@ -23,10 +23,10 @@
 - [x] Task: Conductor - User Manual Verification 'Schema Design' (Protocol in workflow.md)
 
 ## Phase 3: Auth Integration (Transition from Mock)
-- [ ] Task: Transition `lib/auth.tsx` to use Supabase Auth.
-- [ ] Task: Update `LoginForm` and `SignupForm` for real authentication.
-- [ ] Task: Update the Dashboard to fetch user profile data from the `profiles` table.
-- [ ] Task: Conductor - User Manual Verification 'Auth Integration' (Protocol in workflow.md)
+- [x] Task: Transition `lib/auth.tsx` to use Supabase Auth.
+- [x] Task: Update `LoginForm` and `SignupForm` for real authentication.
+- [x] Task: Update the Dashboard to fetch user profile data from the `profiles` table.
+- [x] Task: Conductor - User Manual Verification 'Auth Integration' (Protocol in workflow.md)
 
 ## Phase 4: Data Migration & API Adaptation
 - [ ] Task: Create a robust seed script (`supabase/seed.ts`) to generate **30+ realistic properties**.

@@ -1,23 +1,59 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/lib/auth'
 import { Card } from '@/components/Card'
 import { PropertyCard } from '@/components/PropertyCard'
-import propertiesData from '@/data/properties.json'
+import { supabase } from '@/lib/supabase'
+
+interface Profile {
+  id: string
+  name: string
+  avatar_url: string | null
+}
 
 export default function Dashboard() {
-  const { user, isLoading, logout } = useAuth()
+  const { user, isLoading: isAuthLoading, logout } = useAuth()
+  const [profile, setProfile] = useState<Profile | null>(null)
+  const [isProfileLoading, setIsProfileLoading] = useState(true)
   const router = useRouter()
 
   useEffect(() => {
-    if (!isLoading && !user) {
+    if (!isAuthLoading && !user) {
       router.push('/auth/login')
     }
-  }, [user, isLoading, router])
+  }, [user, isAuthLoading, router])
 
-  if (isLoading || !user) {
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if (!user) return
+      
+      try {
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', user.id)
+          .single()
+        
+        if (error) {
+          console.error('Error fetching profile:', error)
+        } else {
+          setProfile(data)
+        }
+      } catch (e) {
+        console.error('Exception fetching profile:', e)
+      } finally {
+        setIsProfileLoading(false)
+      }
+    }
+
+    if (user) {
+      fetchProfile()
+    }
+  }, [user])
+
+  if (isAuthLoading || (user && isProfileLoading)) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-mosque"></div>
@@ -25,15 +61,19 @@ export default function Dashboard() {
     )
   }
 
-  // Mock favorites
-  const favorites = propertiesData.slice(0, 2)
+  if (!user) return null
+
+  const displayName = profile?.name || user.user_metadata?.full_name || user.email?.split('@')[0]
+
+  // Mock favorites for now (will be implemented in Phase 4)
+  const favorites: any[] = []
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
       <div className="flex flex-col md:flex-row justify-between items-start mb-12 gap-6">
         <div>
           <h1 className="text-4xl font-bold text-nordic-dark mb-2">
-            Welcome back, {user.name}
+            Welcome back, {displayName}
           </h1>
           <p className="text-nordic-muted">
             Manage your elite property portfolio and saved listings.
@@ -53,15 +93,21 @@ export default function Dashboard() {
         {/* Left: Profile Info */}
         <div className="lg:col-span-1 space-y-8">
           <Card className="flex flex-col items-center text-center">
-            <div className="w-24 h-24 bg-primary/20 rounded-full flex items-center justify-center mb-4">
-              <span className="material-icons text-mosque text-5xl">person</span>
+            <div className="w-24 h-24 bg-primary/20 rounded-full flex items-center justify-center mb-4 overflow-hidden border-2 border-mosque/20">
+              {profile?.avatar_url ? (
+                <img src={profile.avatar_url} alt={displayName} className="w-full h-full object-cover" />
+              ) : (
+                <span className="material-icons text-mosque text-5xl">person</span>
+              )}
             </div>
-            <h2 className="text-2xl font-bold text-nordic-dark">{user.name}</h2>
+            <h2 className="text-2xl font-bold text-nordic-dark">{displayName}</h2>
             <p className="text-nordic-muted mb-6">{user.email}</p>
             <div className="w-full pt-6 border-t border-bg-light space-y-4 text-left">
               <div className="flex justify-between items-center">
                 <span className="text-nordic-muted">Member Since</span>
-                <span className="font-medium text-nordic-dark">March 2026</span>
+                <span className="font-medium text-nordic-dark">
+                  {new Date(user.created_at).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                </span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-nordic-muted">Profile Status</span>
@@ -98,15 +144,25 @@ export default function Dashboard() {
             <span className="text-nordic-muted">{favorites.length} Properties</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {favorites.map((property) => (
-              <PropertyCard key={property.id} property={property} />
-            ))}
-          </div>
+          {favorites.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {favorites.map((property) => (
+                <PropertyCard key={property.id} property={property} />
+              ))}
+            </div>
+          ) : (
+            <div className="py-20 text-center border-2 border-dashed border-nordic-muted/20 rounded-xl">
+               <span className="material-icons text-nordic-muted/30 text-6xl mb-4">favorite_border</span>
+               <p className="text-nordic-muted">You haven't saved any properties yet.</p>
+            </div>
+          )}
 
-          <button className="w-full py-4 border-2 border-dashed border-nordic-muted/20 rounded-xl text-nordic-muted hover:border-primary/40 hover:text-mosque transition-all flex items-center justify-center gap-2">
-            <span className="material-icons">add</span>
-            Browse More Properties
+          <button 
+            onClick={() => router.push('/')}
+            className="w-full py-4 bg-white border border-nordic-muted/20 rounded-xl text-nordic-muted hover:border-primary/40 hover:text-mosque transition-all flex items-center justify-center gap-2"
+          >
+            <span className="material-icons">search</span>
+            Browse Properties
           </button>
         </div>
       </div>
