@@ -8,19 +8,19 @@
 - [x] Task: Conductor - User Manual Verification 'Supabase Initialization' (Protocol in workflow.md)
 
 ## Phase 2: Schema Design & Database Setup
-- [ ] Task: Design and create the database schema using SQL migrations.
-    - [ ] Create `properties` table:
+- [x] Task: Design and create the database schema using SQL migrations.
+    - [x] Create `properties` table:
         -   Core: `id` (uuid), `title`, `description`, `price`, `address`.
         -   Specs: `beds`, `baths`, `sqft`.
         -   Media: `images` (text[] - min 5 per property).
         -   Features: `amenities` (text[]/jsonb), `geolocation` (jsonb/point).
         -   Status: `type` (e.g., Villa), `status` (Sale/Rent), `is_featured`, `is_exclusive`, `is_new_arrival`.
         -   SEO: `slug` (text, unique).
-    - [ ] Create `profiles` table (id references auth.users, name, avatar_url).
-    - [ ] Create `favorites` table (user_id, property_id).
-- [ ] Task: Set up basic RLS (Row Level Security) policies.
-- [ ] Task: Generate TypeScript types from the database schema.
-- [ ] Task: Conductor - User Manual Verification 'Schema Design' (Protocol in workflow.md)
+    - [x] Create `profiles` table (id references auth.users, name, avatar_url).
+    - [x] Create `favorites` table (user_id, property_id).
+- [x] Task: Set up basic RLS (Row Level Security) policies.
+- [x] Task: Generate TypeScript types from the database schema.
+- [x] Task: Conductor - User Manual Verification 'Schema Design' (Protocol in workflow.md)
 
 ## Phase 3: Auth Integration (Transition from Mock)
 - [ ] Task: Transition `lib/auth.tsx` to use Supabase Auth.
