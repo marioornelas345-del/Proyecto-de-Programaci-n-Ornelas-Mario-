@@ -12,7 +12,12 @@ export interface Property {
   baths: number
   sqft: number
   images: string[]
-  isFeatured?: boolean
+  is_featured?: boolean
+  is_exclusive?: boolean
+  is_new_arrival?: boolean
+  type?: string
+  status?: string
+  slug: string
 }
 
 interface PropertyCardProps {
@@ -21,7 +26,7 @@ interface PropertyCardProps {
 
 export const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   return (
-    <Link href={`/property/${property.id}`} className="block group">
+    <Link href={`/property/${property.slug}`} className="block group">
       <Card noPadding className="h-full flex flex-col group-hover:shadow-lg transition-shadow">
         <div className="relative h-64 w-full">
           <Image
@@ -29,21 +34,32 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
             alt={property.title}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-500"
+            unoptimized={property.images[0].startsWith('https://images.unsplash.com')}
           />
-          {property.isFeatured && (
+          {property.is_featured && (
             <div className="absolute top-4 left-4 bg-primary text-bg-dark px-3 py-1 text-sm font-bold rounded-md z-10">
               FEATURED
+            </div>
+          )}
+          {property.is_exclusive && (
+            <div className="absolute top-4 right-4 bg-mosque text-white px-3 py-1 text-sm font-bold rounded-md z-10">
+              EXCLUSIVE
             </div>
           )}
           <div className="absolute bottom-4 left-4 bg-bg-dark/80 text-white px-3 py-1 text-lg font-bold rounded-md z-10 backdrop-blur-sm">
             ${property.price.toLocaleString()}
           </div>
+          <div className="absolute bottom-4 right-4 bg-mosque/90 text-white px-2 py-1 text-xs font-bold rounded z-10">
+            {property.status === 'For Rent' ? 'FOR RENT' : 'FOR SALE'}
+          </div>
         </div>
         
         <div className="p-5 flex flex-col flex-grow">
-          <h3 className="text-xl font-bold text-nordic-dark mb-2 line-clamp-1">
-            {property.title}
-          </h3>
+          <div className="flex justify-between items-start mb-2">
+            <h3 className="text-xl font-bold text-nordic-dark line-clamp-1 flex-grow">
+              {property.title}
+            </h3>
+          </div>
           <p className="text-sm text-nordic-muted mb-4 line-clamp-1 flex items-center gap-1">
             <span className="material-icons text-sm">place</span>
             {property.address}

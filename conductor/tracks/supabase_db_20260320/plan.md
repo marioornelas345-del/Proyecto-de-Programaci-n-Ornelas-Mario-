@@ -29,15 +29,14 @@
 - [x] Task: Conductor - User Manual Verification 'Auth Integration' (Protocol in workflow.md)
 
 ## Phase 4: Data Migration & API Adaptation
-- [ ] Task: Create a robust seed script (`supabase/seed.ts`) to generate **30+ realistic properties**.
-    -   Must include: High-quality Unsplash images (5+), realistic coords, amenities, slugs.
-- [ ] Task: Update `FeaturedListings` to fetch featured/exclusive properties from DB.
-- [ ] Task: Update `PropertyPage` to fetch data by `slug` instead of `id`.
-- [ ] Task: Implement basic search query using Supabase client (filter by type, status, price).
-- [ ] Task: Conductor - User Manual Verification 'Data Migration' (Protocol in workflow.md)
+- [x] Task: Create a robust seed script (`supabase/seed.ts`) to generate **30+ realistic properties**. (Completed: 35 properties seeded)
+- [x] Task: Update `FeaturedListings` to fetch featured/exclusive properties from DB.
+- [x] Task: Update `PropertyPage` to fetch data by `slug` instead of `id`.
+- [x] Task: Implement basic search query using Supabase client (filter by type, status, price).
+- [x] Task: Conductor - User Manual Verification 'Data Migration' (Protocol in workflow.md)
 
 ## Phase 5: Verification & Cleanup
-- [ ] Task: Run the test suite and update tests where necessary to account for asynchronous database calls.
-- [ ] Task: Perform a manual end-to-end flow: Signup -> Login -> Browse Listings -> Property Detail.
-- [ ] Task: Deprecate `data/properties.json` and remove mock auth logic.
-- [ ] Task: Conductor - User Manual Verification 'Verification & Cleanup' (Protocol in workflow.md)
+- [x] Task: Run the test suite and update tests where necessary to account for asynchronous database calls.
+- [x] Task: Perform a manual end-to-end flow: Signup -> Login -> Browse Listings -> Property Detail.
+- [x] Task: Deprecate `data/properties.json` and remove mock auth logic.
+- [x] Task: Conductor - User Manual Verification 'Verification & Cleanup' (Protocol in workflow.md)

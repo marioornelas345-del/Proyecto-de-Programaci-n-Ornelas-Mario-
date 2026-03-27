@@ -1,13 +1,19 @@
 import React from 'react'
 import { Hero } from '@/components/Hero'
 import { FeaturedListings } from '@/components/FeaturedListings'
-import propertiesData from '@/data/properties.json'
-
 import { LandingSearch } from './_components/LandingSearch'
+import { supabase } from '@/lib/supabase'
 
-export default function Home() {
-  // In a real app, this would be a server action or a fetch
-  const properties = propertiesData
+export default async function Home() {
+  // Fetch properties from Supabase
+  const { data: properties, error } = await supabase
+    .from('properties')
+    .select('*')
+    .limit(10)
+
+  if (error) {
+    console.error('Error fetching properties:', error)
+  }
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -22,7 +28,7 @@ export default function Home() {
       <LandingSearch />
 
       {/* Featured Listings */}
-      <FeaturedListings properties={properties} />
+      <FeaturedListings properties={properties || []} />
 
       {/* Call to Action Section */}
       <section className="bg-bg-dark text-white py-20 px-4 mt-auto">

@@ -6,7 +6,7 @@ interface FeaturedListingsProps {
 }
 
 export const FeaturedListings: React.FC<FeaturedListingsProps> = ({ properties }) => {
-  const featured = properties.filter(p => p.isFeatured)
+  const featured = properties.filter(p => p.is_featured)
 
   return (
     <section className="py-16 px-4 max-w-7xl mx-auto">

@@ -12,8 +12,9 @@ const mockProperties = [
     beds: 4,
     baths: 3,
     sqft: 4000,
-    isFeatured: true,
-    images: ['https://example.com/image.jpg']
+    is_featured: true,
+    images: ['https://example.com/image.jpg'],
+    slug: 'featured-villa'
   }
 ]
 

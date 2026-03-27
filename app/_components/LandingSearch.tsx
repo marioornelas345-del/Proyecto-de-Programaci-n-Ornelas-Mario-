@@ -1,12 +1,16 @@
 'use client'
 
 import React from 'react'
+import { useRouter } from 'next/navigation'
 import { SearchBar } from '@/components/SearchBar'
 
 export const LandingSearch: React.FC = () => {
+  const router = useRouter()
+
   const handleSearch = (query: string) => {
-    console.log('Searching for:', query)
-    // In a real app, this would navigate to /search?q=query
+    if (query.trim()) {
+      router.push(`/search?q=${encodeURIComponent(query)}`)
+    }
   }
 
   return (
