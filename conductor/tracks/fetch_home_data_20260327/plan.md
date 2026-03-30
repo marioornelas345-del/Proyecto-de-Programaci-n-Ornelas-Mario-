@@ -1,10 +1,10 @@
 # Implementation Plan: Dynamic Home Screen Data Fetching (`fetch_home_data_20260327`)
 
 ## Phase 1: Foundation & Setup
-- [ ] **Task: Environment & UI Components Preparation**
-    - [ ] Install Shadcn UI components: `pagination`, `skeleton`, and `toast`.
-    - [ ] Verify Supabase client configuration and environment variables.
-    - [ ] Ensure TypeScript types for `properties` are up-to-date with the database schema.
+- [x] **Task: Environment & UI Components Preparation** (Completed)
+    - [x] Install Shadcn UI components: `pagination`, `skeleton`, and `toast`. (Done: Installed pagination, skeleton, and sonner)
+    - [x] Verify Supabase client configuration and environment variables. (Verified: URL found, but ANON_KEY is missing in .env.local)
+    - [x] Ensure TypeScript types for `properties` are up-to-date with the database schema. (Done: Updated manually)
 - [ ] **Task: Conductor - User Manual Verification 'Foundation & Setup' (Protocol in workflow.md)**
 
 ## Phase 2: Featured Collections (Random SSR)
