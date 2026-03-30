@@ -6,6 +6,9 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ## Active Tracks
 
+- [ ] **Track: Advanced Search and Filters**
+*Link: [./advanced_search_20260329_index.md](./advanced_search_20260329_index.md)*
+
 ---
 
 ## Archived Tracks
