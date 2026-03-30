@@ -8,6 +8,8 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 - [ ] **Track: Advanced Search and Filters**
 *Link: [./advanced_search_20260329_index.md](./advanced_search_20260329_index.md)*
+- [ ] **Track: Property Management Form (Add/Edit)**
+*Link: [./property_management_form_20260329_index.md](./property_management_form_20260329_index.md)*
 
 ---
 
