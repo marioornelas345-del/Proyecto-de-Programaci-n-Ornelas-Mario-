@@ -135,13 +135,19 @@ export const ModernCarousel: React.FC<ModernCarouselProps> = ({
 
             {/* Modal Navigation */}
             <button 
-              onClick={() => setActiveIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+              }}
               className="absolute left-8 w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
             >
               <span className="material-icons text-3xl">chevron_left</span>
             </button>
             <button 
-              onClick={() => setActiveIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))}
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+              }}
               className="absolute right-8 w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
             >
               <span className="material-icons text-3xl">chevron_right</span>
