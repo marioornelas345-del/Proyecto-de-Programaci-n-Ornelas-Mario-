@@ -6,7 +6,7 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ## Active Tracks
 
-- [ ] **Track: Property Management Form (Add/Edit)**
+- [x] **Track: Property Management Form (Add/Edit)**
 *Link: [./property_management_form_20260329_index.md](./property_management_form_20260329_index.md)*
 - [ ] **Track: Admin User Directory**
 *Link: [./admin_user_directory_20260329_index.md](./admin_user_directory_20260329_index.md)*
