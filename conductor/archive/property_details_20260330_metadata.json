@@ -1,0 +1,8 @@
+{
+  "track_id": "property_details_high_fidelity_20260330",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-03-30T10:00:00Z",
+  "updated_at": "2026-03-30T10:00:00Z",
+  "description": "Refactorizar la página de detalles de propiedad en app/property/[slug]/page.tsx para convertirla en una experiencia editorial de alta fidelidad y premium, utilizando datos reales de Supabase y alineándose con los recursos visuales de prd/resource/property_details_screen."
+}
