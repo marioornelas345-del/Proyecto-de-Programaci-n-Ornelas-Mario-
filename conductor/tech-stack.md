@@ -23,3 +23,8 @@
 ## Architecture
 - **App Router (RSC-First)**: The project is architected around React Server Components (RSC) to minimize client-side JavaScript and maximize performance.
 - **Component-Driven Development**: Building reusable UI components based on the design system defined in `prd/resource/`.
+
+## Backend & Authentication
+- **Supabase Auth**: Complete authentication system supporting Email/Password and OAuth (Google, GitHub) providers.
+- **PostgreSQL (Supabase)**: Relational database with Row Level Security (RLS) for secure data isolation and elite performance.
+- **Database Type Safety**: Automatic TypeScript type generation using the Supabase CLI for error-free development.
