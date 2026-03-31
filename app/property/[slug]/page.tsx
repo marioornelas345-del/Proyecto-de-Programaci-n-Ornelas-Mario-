@@ -31,6 +31,11 @@ async function PropertyDetails({ slug }: { slug: string }) {
           isExclusive={property.is_exclusive}
           isNewArrival={property.is_new_arrival}
         />
+          images={property.images || []} 
+          title={property.title} 
+          isExclusive={property.is_exclusive}
+          isNewArrival={property.is_new_arrival}
+        />
 
         {/* Property Features - Mobile Optimized Header */}
         <div className="lg:hidden space-y-4">
