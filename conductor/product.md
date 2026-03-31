@@ -19,7 +19,7 @@ LuxeEstate is designed for the upper echelon of the real estate market. It provi
 ## Core Features
 - **Premium Authentication (OAuth)**: Seamless social login with Google and GitHub for a friction-less onboarding experience.
 - **Personalized Elite Profiles**: Deeply tailored user profiles that capture roles, preferences, and lifestyle requirements for curated property matching.
-- **Luxury Filters & Search**: Highly specific search criteria for premium amenities like home theaters, infinity pools, and private docks.
+- **Luxury Filters & Search**: High-performance, URL-driven search system for specific premium criteria like amenities (Pool, Home Theater), price ranges, and property types with sub-second response times.
 - **Immersive Media Display**: Ultra-high-resolution photo galleries and 4K video tours as the centerpiece of listing pages.
 - **Private Client Portals**: Secure and private communication channels for high-profile clients and their representatives.
 
