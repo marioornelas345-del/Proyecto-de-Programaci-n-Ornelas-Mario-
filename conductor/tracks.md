@@ -16,6 +16,8 @@ This file tracks all major tracks for the project. Each track has its own detail
 *Link: [./property_details_20260330_index.md](./property_details_20260330_index.md)*
 - [ ] **Track: Property Management Dashboard (RSC)**
 *Link: [./property_management_dashboard_20260330_index.md](./property_management_dashboard_20260330_index.md)*
+- [ ] **Track: Social Login and Registration (OAuth)**
+*Link: [./social_auth_20260330_index.md](./social_auth_20260330_index.md)*
 
 ---
 
