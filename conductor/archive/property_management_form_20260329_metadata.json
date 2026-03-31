@@ -1,0 +1,8 @@
+{
+  "track_id": "property_management_form_20260329",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-03-29T12:00:00Z",
+  "updated_at": "2026-03-29T12:00:00Z",
+  "description": "Un formulario de administración premium para la creación y edición de propiedades de lujo, con persistencia real en Supabase y una estética editorial sofisticada."
+}
