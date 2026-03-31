@@ -6,7 +6,7 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ## Active Tracks
 
-- [ ] **Admin User Directory**
+- [x] **Admin User Directory**
 *Link: [./admin_user_directory_20260329_index.md](./admin_user_directory_20260329_index.md)*
 - [ ] **Property Details Screen (High-Fidelity)**
 *Link: [./property_details_20260330_index.md](./property_details_20260330_index.md)*

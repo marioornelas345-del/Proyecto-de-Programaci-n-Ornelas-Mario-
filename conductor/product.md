@@ -23,6 +23,7 @@ LuxeEstate is designed for the upper echelon of the real estate market. It provi
 - **Immersive Media Display**: Ultra-high-resolution photo galleries and 4K video tours as the centerpiece of listing pages.
 - **Private Client Portals**: Secure and private communication channels for high-profile clients and their representatives.
 - **Advanced Listing Management**: A robust, administrative backoffice for creating and editing luxury property listings with real-time validation, automatic slug generation, and detailed property profiling.
+- **Elite User Directory**: Secure administrative control over user roles and account statuses with real-time metrics and advanced filtering capabilities.
 
 ## Differentiation
 - **Boutique Design Aesthetic**: A minimalist, sophisticated interface (as seen in the PRD) that avoids the cluttered look of mass-market portals.
