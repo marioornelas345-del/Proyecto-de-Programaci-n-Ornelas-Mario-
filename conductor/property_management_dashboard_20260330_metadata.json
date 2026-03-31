@@ -1,0 +1,8 @@
+{
+  "track_id": "property_management_dashboard_20260330",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-03-30T10:00:00Z",
+  "updated_at": "2026-03-30T10:00:00Z",
+  "description": "Refactorizar app/dashboard/page.tsx hacia un dashboard de gestión de propiedades real (RSC), conectado a Supabase y alineado visualmente con property_management_dashboard."
+}
