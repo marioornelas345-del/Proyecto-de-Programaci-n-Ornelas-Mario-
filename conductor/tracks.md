@@ -6,12 +6,9 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ## Active Tracks
 
-- [ ] **Property Details Screen (High-Fidelity)**
-*Link: [./property_details_20260330_index.md](./property_details_20260330_index.md)*
-
----
-
 ## Archived Tracks
+- **Track: Property Details Screen (High-Fidelity)** (Completed: 2026-03-31)
+  *Archive: [./archive/property_details_20260330_index.md](./archive/property_details_20260330_index.md)*
 - **Track: Admin User Directory** (Completed: 2026-03-31)
   *Archive: [./archive/admin_user_directory_20260329_index.md](./archive/admin_user_directory_20260329_index.md)*
 - **Track: Property Management Form (Add/Edit)** (Completed: 2026-03-31)
