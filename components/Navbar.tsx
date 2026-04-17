@@ -6,7 +6,7 @@ import { Button } from './Button'
 import { useAuth } from '@/lib/auth'
 
 export const Navbar: React.FC = () => {
-  const { user, logout } = useAuth()
+  const { user, signOut } = useAuth()
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-bg-light">
@@ -21,10 +21,10 @@ export const Navbar: React.FC = () => {
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
-          <Link href="/" className="text-nordic-dark font-medium hover:text-mosque transition-colors">Buy</Link>
-          <Link href="/" className="text-nordic-dark font-medium hover:text-mosque transition-colors">Rent</Link>
-          <Link href="/" className="text-nordic-dark font-medium hover:text-mosque transition-colors">Sell</Link>
-          <Link href="/" className="text-nordic-dark font-medium hover:text-mosque transition-colors">About</Link>
+          <Link href="/search?status=For Sale" className="text-nordic-dark font-medium hover:text-mosque transition-colors">Buy</Link>
+          <Link href="/search?status=For Rent" className="text-nordic-dark font-medium hover:text-mosque transition-colors">Rent</Link>
+          <Link href="/dashboard/properties" className="text-nordic-dark font-medium hover:text-mosque transition-colors">Sell</Link>
+          <Link href="/about" className="text-nordic-dark font-medium hover:text-mosque transition-colors">About</Link>
         </div>
 
         <div className="flex items-center gap-4">
@@ -35,7 +35,7 @@ export const Navbar: React.FC = () => {
                 {user.name}
               </Link>
               <button 
-                onClick={logout}
+                onClick={signOut}
                 className="text-nordic-muted hover:text-red-500 transition-colors text-sm font-medium"
               >
                 Logout

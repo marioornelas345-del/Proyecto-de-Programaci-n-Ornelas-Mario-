@@ -1,10 +1,13 @@
 import React from 'react'
+import Link from 'next/link'
 import { Hero } from '@/components/Hero'
 import { FeaturedListings } from '@/components/FeaturedListings'
 import { LandingSearch } from './_components/LandingSearch'
-import { supabase } from '@/lib/supabase'
+import { createServerSupabase } from '@/lib/supabase-server'
+import { Button } from '@/components/Button'
 
 export default async function Home() {
+  const supabase = await createServerSupabase()
   // Fetch properties from Supabase
   const { data: properties, error } = await supabase
     .from('properties')
@@ -40,12 +43,16 @@ export default async function Home() {
             Our team of elite agents is ready to guide you through the process of acquiring your next luxury property.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-primary text-bg-dark font-bold px-8 py-4 rounded-md hover:bg-opacity-90 transition-colors">
-              Contact an Agent
-            </button>
-            <button className="border border-white text-white font-bold px-8 py-4 rounded-md hover:bg-white/10 transition-colors">
-              List Your Property
-            </button>
+            <Link href="/contact">
+              <Button size="lg" className="w-full sm:w-auto font-bold">
+                Contact an Agent
+              </Button>
+            </Link>
+            <Link href="/dashboard/properties/new">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto border-white text-white hover:bg-white/10 font-bold">
+                List Your Property
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -73,7 +80,7 @@ export default async function Home() {
           <div>
             <h4 className="text-white font-bold mb-6">Quick Links</h4>
             <ul className="space-y-4 text-nordic-muted">
-              <li><a href="#" className="hover:text-primary transition-colors">Browse Listings</a></li>
+              <li><Link href="/search" className="hover:text-primary transition-colors">Browse Listings</Link></li>
               <li><a href="#" className="hover:text-primary transition-colors">Market Reports</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Luxury Living Blog</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Concierge Services</a></li>
@@ -83,10 +90,10 @@ export default async function Home() {
           <div>
             <h4 className="text-white font-bold mb-6">Company</h4>
             <ul className="space-y-4 text-nordic-muted">
-              <li><a href="#" className="hover:text-primary transition-colors">Our Story</a></li>
+              <li><Link href="/about" className="hover:text-primary transition-colors">Our Story</Link></li>
               <li><a href="#" className="hover:text-primary transition-colors">Elite Agents</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Contact Us</a></li>
+              <li><Link href="/contact" className="hover:text-primary transition-colors">Contact Us</Link></li>
             </ul>
           </div>
         </div>

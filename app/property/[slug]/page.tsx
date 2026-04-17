@@ -2,12 +2,13 @@ import React, { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import Image from 'next/image'
-import { ContactForm } from '@/components/ContactForm'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ModernCarousel } from '@/components/ModernCarousel'
+import { PropertyActions } from '@/components/PropertyActions'
 
+// Corrected: params prop is a Promise in Next.js 15+
 interface PropertyPageProps {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>;
 }
 
 async function PropertyDetails({ slug }: { slug: string }) {
@@ -18,6 +19,7 @@ async function PropertyDetails({ slug }: { slug: string }) {
     .single()
 
   if (error || !property) {
+    // If there's an error or no property found, render a 404 page
     notFound()
   }
 
@@ -25,14 +27,10 @@ async function PropertyDetails({ slug }: { slug: string }) {
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
       {/* Left Column: Gallery and Detailed Info */}
       <div className="lg:col-span-8 space-y-8">
-        <ModernCarousel 
-          images={property.images || []} 
-          title={property.title} 
-          isExclusive={property.is_exclusive}
-          isNewArrival={property.is_new_arrival}
-        />
-          images={property.images || []} 
-          title={property.title} 
+        {/* Cleaned up ModernCarousel block - rendered only once */}
+        <ModernCarousel
+          images={property.images || []}
+          title={property.title}
           isExclusive={property.is_exclusive}
           isNewArrival={property.is_new_arrival}
         />
@@ -135,6 +133,7 @@ async function PropertyDetails({ slug }: { slug: string }) {
                   src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200" 
                   alt="Agent" 
                   fill 
+                  sizes="64px"
                   className="object-cover"
                 />
               </div>
@@ -153,16 +152,7 @@ async function PropertyDetails({ slug }: { slug: string }) {
             </div>
 
             {/* Actions */}
-            <div className="space-y-4">
-              <button className="w-full bg-mosque hover:bg-opacity-95 text-white py-5 px-6 rounded-2xl font-bold transition-all shadow-xl shadow-mosque/20 flex items-center justify-center gap-3 group">
-                <span className="material-icons text-xl group-hover:scale-110 transition-transform">calendar_today</span>
-                Schedule Visit
-              </button>
-              <div className="p-6 bg-bg-light/50 rounded-2xl border border-nordic-muted/5">
-                <h4 className="font-bold text-nordic-dark mb-4">Express Interest</h4>
-                <ContactForm />
-              </div>
-            </div>
+            <PropertyActions propertyName={property.title} />
           </div>
 
           {/* Map Preview Card */}
@@ -203,7 +193,8 @@ function DetailsSkeleton() {
 }
 
 export default async function PropertyPage({ params }: PropertyPageProps) {
-  const { slug } = await params
+  // Corrected: Use await to unwrap params
+  const { slug } = await params;
 
   return (
     <div className="min-h-screen bg-bg-light selection:bg-mosque/20">

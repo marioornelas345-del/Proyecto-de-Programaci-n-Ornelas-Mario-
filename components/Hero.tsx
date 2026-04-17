@@ -1,12 +1,13 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Button } from './Button'
 
 interface HeroProps {
   title: string
   subtitle?: string
   ctaText?: string
-  onCtaClick?: () => void
+  ctaHref?: string
   backgroundImage?: string
 }
 
@@ -14,7 +15,7 @@ export const Hero: React.FC<HeroProps> = ({
   title,
   subtitle,
   ctaText,
-  onCtaClick,
+  ctaHref = '/search',
   backgroundImage = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop',
 }) => {
   return (
@@ -42,13 +43,14 @@ export const Hero: React.FC<HeroProps> = ({
           </p>
         )}
         {ctaText && (
-          <Button 
-            size="lg" 
-            onClick={onCtaClick}
-            className="shadow-card"
-          >
-            {ctaText}
-          </Button>
+          <Link href={ctaHref}>
+            <Button 
+              size="lg" 
+              className="shadow-card"
+            >
+              {ctaText}
+            </Button>
+          </Link>
         )}
       </div>
     </div>

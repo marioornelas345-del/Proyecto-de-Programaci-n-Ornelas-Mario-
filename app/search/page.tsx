@@ -1,9 +1,11 @@
 import React, { Suspense } from 'react'
+import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { PropertyCard } from '@/components/PropertyCard'
 import { LandingSearch } from '../_components/LandingSearch'
 import { Skeleton } from '@/components/ui/skeleton'
 import { SearchFiltersSidebar } from '@/components/SearchFiltersSidebar'
+import { Button } from '@/components/Button'
 
 interface SearchPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -28,18 +30,47 @@ function SearchSkeleton() {
 async function SearchResults({ params }: { params: { [key: string]: string | string[] | undefined } }) {
   const query = typeof params.q === 'string' ? params.q : ''
   const location = typeof params.location === 'string' ? params.location : ''
-  const type = typeof params.type === 'string' ? params.type : undefined
-  const status = typeof params.status === 'string' ? params.status : undefined
-  const minPrice = typeof params.minPrice === 'string' ? parseInt(params.minPrice) : undefined
-  const maxPrice = typeof params.maxPrice === 'string' ? parseInt(params.maxPrice) : undefined
-  const minBeds = typeof params.beds === 'string' ? parseInt(params.beds) : undefined
-  const minBaths = typeof params.baths === 'string' ? parseInt(params.baths) : undefined
+  
+  const type = typeof params.type === 'string' && params.type !== 'All' ? params.type : undefined
+  const status = typeof params.status === 'string' && params.status !== 'All' ? params.status : undefined
+  
+  let minPrice: number | undefined = undefined
+  if (typeof params.minPrice === 'string') {
+    const parsedPrice = parseInt(params.minPrice)
+    if (!isNaN(parsedPrice)) {
+      minPrice = parsedPrice
+    }
+  }
+  
+  let maxPrice: number | undefined = undefined
+  if (typeof params.maxPrice === 'string') {
+    const parsedPrice = parseInt(params.maxPrice)
+    if (!isNaN(parsedPrice)) {
+      maxPrice = parsedPrice
+    }
+  }
+
+  let minBeds: number | undefined = undefined
+  if (typeof params.beds === 'string') {
+    const parsedBeds = parseInt(params.beds)
+    if (!isNaN(parsedBeds)) {
+      minBeds = parsedBeds
+    }
+  }
+
+  let minBaths: number | undefined = undefined
+  if (typeof params.baths === 'string') {
+    const parsedBaths = parseInt(params.baths)
+    if (!isNaN(parsedBaths)) {
+      minBaths = parsedBaths
+    }
+  }
   
   let amenities: string[] = []
   if (typeof params.amenities === 'string') {
     amenities = [params.amenities]
   } else if (Array.isArray(params.amenities)) {
-    amenities = params.amenities as string[]
+    amenities = params.amenities.filter(item => typeof item === 'string') as string[]
   }
 
   let queryBuilder = supabase.from('properties').select('*')
@@ -49,18 +80,18 @@ async function SearchResults({ params }: { params: { [key: string]: string | str
     queryBuilder = queryBuilder.or(`title.ilike.%${searchTerm}%,address.ilike.%${searchTerm}%`)
   }
 
-  if (type && type !== 'All') {
+  if (type) { // Already filtered out 'All'
     queryBuilder = queryBuilder.eq('type', type)
   }
 
-  if (status && status !== 'All') {
+  if (status) { // Already filtered out 'All'
     queryBuilder = queryBuilder.eq('status', status)
   }
 
-  if (minPrice) queryBuilder = queryBuilder.gte('price', minPrice)
-  if (maxPrice) queryBuilder = queryBuilder.lte('price', maxPrice)
-  if (minBeds) queryBuilder = queryBuilder.gte('beds', minBeds)
-  if (minBaths) queryBuilder = queryBuilder.gte('baths', minBaths)
+  if (minPrice !== undefined) queryBuilder = queryBuilder.gte('price', minPrice)
+  if (maxPrice !== undefined) queryBuilder = queryBuilder.lte('price', maxPrice)
+  if (minBeds !== undefined) queryBuilder = queryBuilder.gte('beds', minBeds)
+  if (minBaths !== undefined) queryBuilder = queryBuilder.gte('baths', minBaths)
 
   if (amenities.length > 0) {
     queryBuilder = queryBuilder.contains('amenities', amenities)
@@ -70,6 +101,8 @@ async function SearchResults({ params }: { params: { [key: string]: string | str
 
   if (error) {
     console.error('Error fetching properties:', error)
+    // In a production app, you'd want to return an error UI here
+    return <div className="text-red-500">Error loading properties. Please try again later.</div>
   }
 
   return (
@@ -96,12 +129,16 @@ async function SearchResults({ params }: { params: { [key: string]: string | str
             We couldn&apos;t find any properties matching your specific criteria. Try adjusting your filters or contact an agent for private listings.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-mosque text-white px-8 py-3 rounded-xl font-bold hover:bg-opacity-90 transition-all">
-              Clear All Filters
-            </button>
-            <button className="border border-mosque text-mosque px-8 py-3 rounded-xl font-bold hover:bg-mosque/5 transition-all">
-              Contact an Agent
-            </button>
+            <Link href="/search">
+              <Button variant="primary" className="px-8">
+                Clear All Filters
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button variant="outline" className="px-8 border-mosque text-mosque hover:bg-mosque/5">
+                Contact an Agent
+              </Button>
+            </Link>
           </div>
         </div>
       )}

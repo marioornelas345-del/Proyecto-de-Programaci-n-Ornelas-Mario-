@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import React, { useState, useEffect } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { signInWithGoogle, signInWithGitHub } from '@/lib/auth'
 import { Button } from './ui/button'
 
@@ -10,6 +10,20 @@ export const SignupForm: React.FC = () => {
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    const urlError = searchParams.get('error')
+    if (urlError) {
+      if (urlError === 'auth-callback-failed') {
+        setError('Registration failed during callback. This usually happens if cookies are disabled or the session expired.')
+      } else if (urlError === 'access_denied') {
+        setError('Access denied. You might have cancelled the registration.')
+      } else {
+        setError(urlError.replace(/_/g, ' '))
+      }
+    }
+  }, [searchParams])
 
   const handleOAuthSignIn = async (provider: 'google' | 'github') => {
     setIsLoading(true)

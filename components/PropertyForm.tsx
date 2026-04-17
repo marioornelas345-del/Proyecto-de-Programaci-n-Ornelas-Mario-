@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { useForm, useFieldArray } from 'react-hook-form'
+import { useForm, useFieldArray, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { propertySchema, PropertyFormValues } from '@/lib/validations/property'
 import { Button } from '@/components/ui/button'
@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
 import { createProperty, updateProperty } from '@/app/dashboard/properties/actions'
+import { AmenitiesSelector } from './AmenitiesSelector'
 
 interface PropertyFormProps {
   mode: 'create' | 'edit'
@@ -26,7 +27,7 @@ export const PropertyForm: React.FC<PropertyFormProps> = ({ mode, initialData })
     setValue,
     control,
     formState: { errors }
-  } = useForm<PropertyFormValues>({
+  } = useForm({
     resolver: zodResolver(propertySchema),
     defaultValues: initialData || {
       title: '',
@@ -46,7 +47,7 @@ export const PropertyForm: React.FC<PropertyFormProps> = ({ mode, initialData })
 
   const { fields: imageFields, append: appendImage, remove: removeImage } = useFieldArray({
     control,
-    name: 'images' as any
+    name: 'images'
   })
 
   const title = watch('title')
@@ -62,7 +63,7 @@ export const PropertyForm: React.FC<PropertyFormProps> = ({ mode, initialData })
     }
   }, [title, mode, setValue])
 
-  const onSubmit = async (data: PropertyFormValues) => {
+  const onSubmit = async (data: any) => {
     setIsLoading(true)
     try {
       let result
@@ -98,7 +99,7 @@ export const PropertyForm: React.FC<PropertyFormProps> = ({ mode, initialData })
               placeholder="e.g. Oceanfront Mediterranean Villa"
               className="w-full h-12 px-4 rounded-xl border border-nordic-muted/20 focus:border-mosque outline-none transition-all"
             />
-            {errors.title && <p className="text-xs text-red-500 ml-1">{errors.title.message}</p>}
+            {errors.title?.message && <p className="text-xs text-red-500 ml-1">{errors.title.message as string}</p>}
           </div>
           <div className="space-y-2">
             <label className="text-sm font-bold text-nordic-dark uppercase tracking-wider ml-1">Slug (URL Name)</label>
@@ -106,7 +107,7 @@ export const PropertyForm: React.FC<PropertyFormProps> = ({ mode, initialData })
               {...register('slug')}
               className="w-full h-12 px-4 rounded-xl border border-nordic-muted/20 bg-bg-light/50 focus:border-mosque outline-none transition-all"
             />
-            {errors.slug && <p className="text-xs text-red-500 ml-1">{errors.slug.message}</p>}
+            {errors.slug?.message && <p className="text-xs text-red-500 ml-1">{errors.slug.message as string}</p>}
           </div>
           <div className="col-span-1 md:col-span-2 space-y-2">
             <label className="text-sm font-bold text-nordic-dark uppercase tracking-wider ml-1">Description</label>
@@ -116,7 +117,7 @@ export const PropertyForm: React.FC<PropertyFormProps> = ({ mode, initialData })
               placeholder="Describe the property's unique features, history, and appeal..."
               className="w-full p-4 rounded-xl border border-nordic-muted/20 focus:border-mosque outline-none transition-all resize-none"
             />
-            {errors.description && <p className="text-xs text-red-500 ml-1">{errors.description.message}</p>}
+            {errors.description?.message && <p className="text-xs text-red-500 ml-1">{errors.description.message as string}</p>}
           </div>
         </div>
       </section>
@@ -132,7 +133,7 @@ export const PropertyForm: React.FC<PropertyFormProps> = ({ mode, initialData })
               {...register('price', { valueAsNumber: true })}
               className="w-full h-12 px-4 rounded-xl border border-nordic-muted/20 focus:border-mosque outline-none transition-all"
             />
-            {errors.price && <p className="text-xs text-red-500 ml-1">{errors.price.message}</p>}
+            {errors.price?.message && <p className="text-xs text-red-500 ml-1">{errors.price.message as string}</p>}
           </div>
           <div className="space-y-2">
             <label className="text-sm font-bold text-nordic-dark uppercase tracking-wider ml-1">Full Address</label>
@@ -141,7 +142,7 @@ export const PropertyForm: React.FC<PropertyFormProps> = ({ mode, initialData })
               placeholder="e.g. 123 Luxury Way, Beverly Hills, CA"
               className="w-full h-12 px-4 rounded-xl border border-nordic-muted/20 focus:border-mosque outline-none transition-all"
             />
-            {errors.address && <p className="text-xs text-red-500 ml-1">{errors.address.message}</p>}
+            {errors.address?.message && <p className="text-xs text-red-500 ml-1">{errors.address.message as string}</p>}
           </div>
         </div>
       </section>
@@ -210,7 +211,7 @@ export const PropertyForm: React.FC<PropertyFormProps> = ({ mode, initialData })
               </Button>
             </div>
           ))}
-          {errors.images && <p className="text-xs text-red-500 ml-1">{errors.images.message}</p>}
+          {errors.images?.message && <p className="text-xs text-red-500 ml-1">{errors.images.message as string}</p>}
         </div>
       </section>
 

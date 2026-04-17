@@ -1,59 +1,71 @@
-const fs = require('fs')
+const fs = require('fs');
 
-const CITIES = ['Seattle', 'Miami', 'Chicago', 'Palo Alto', 'Beverly Hills', 'Vancouver', 'Portland', 'Bend', 'Austin']
-const TYPES = ['House', 'Apartment', 'Villa', 'Penthouse']
-const AMENITIES = ['Smart Home System', 'Swimming Pool', 'Central Heating & Cooling', 'EV Charging', 'Private Gym', 'Wine Cellar', 'Ocean View', 'Gourmet Kitchen', 'Spa Bathroom', 'Home Theater']
+const imageIds = [
+  '1600585154340-be6161a56a0c', // House
+  '1512917774080-9991f1c4c750', // Modern
+  '1600596542815-ffad4c1539a9', // Villa
+  '1613490493576-7fde63acd811', // Stable modern interior
+  '1518780664697-55e3ad937233', // Exterior
+  '1480074568708-e7b720bb3f09', // Garden
+  '1568605114967-8130f3a36994', // Apartment
+  '1570129477492-45c003edd2be', // Living room
+  '1516156008625-3a9d6067fab5', // Kitchen
+  '1502672260266-1c1ef2d93688', // Bedroom
+  '1512918728675-ed5a9ecdebfd'  // Pool
+];
 
 const generateSlug = (title) => {
   return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
 }
 
-const generateRandomImages = (type, count) => {
-  const images = []
-  const keywords = {
-    'House': ['house', 'living', 'kitchen', 'bedroom', 'garden'],
-    'Apartment': ['apartment', 'condo', 'loft', 'city'],
-    'Villa': ['villa', 'mansion', 'estate'],
-    'Penthouse': ['penthouse', 'view', 'luxury']
+let imageCounter = 0;
+const getImages = () => {
+  const images = [];
+  for (let i = 0; i < 5; i++) {
+    const id = imageIds[imageCounter % imageIds.length];
+    images.push(`https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1600&q=80`)
+    imageCounter++;
   }
-  
-  const tags = keywords[type] || ['house']
-  
-  for (let i = 0; i < count; i++) {
-    const keyword = tags[i % tags.length]
-    images.push(`https://images.unsplash.com/photo-${Math.floor(Math.random() * 100000000)}?auto=format&fit=crop&w=1600&q=80`)
-  }
-  return images
+  return images;
 }
 
-let sql = "INSERT INTO public.properties (title, description, price, address, beds, baths, sqft, images, amenities, geolocation, type, status, is_featured, is_exclusive, is_new_arrival, slug) VALUES \n"
+const cities = ['Seattle', 'Miami', 'Chicago', 'Palo Alto', 'Beverly Hills', 'Vancouver', 'Portland', 'Bend', 'Austin'];
+const types = ['House', 'Apartment', 'Villa', 'Penthouse'];
 
-const rows = []
-for (let i = 0; i < 35; i++) {
-  const city = CITIES[i % CITIES.length]
-  const type = TYPES[i % TYPES.length]
-  const id = i + 1
-  const title = `${type === 'Penthouse' ? 'Azure' : 'Elite'} ${type} ${id} in ${city}`
-  const price = type === 'Villa' || type === 'Penthouse' 
-    ? Math.floor(Math.random() * 10000000) + 2000000 
-    : Math.floor(Math.random() * 1500000) + 400000
+const properties = [];
+
+for (let i = 1; i <= 35; i++) {
+  const city = cities[i % cities.length];
+  const type = types[i % types.length];
+  const isSpecial = type === 'Penthouse' || type === 'Villa';
+  const price = isSpecial ? 5000000 : 850000;
+  const title = `${isSpecial ? 'Azure' : 'Elite'} ${type} ${i} in ${city}`;
   
-  const beds = type === 'Penthouse' ? 3 : type === 'Villa' ? 5 : Math.floor(Math.random() * 3) + 2
-  const baths = Math.floor(Math.random() * 3) + 2
-  const sqft = type === 'Villa' ? Math.floor(Math.random() * 3000) + 3000 : Math.floor(Math.random() * 1500) + 800
-  
-  const randomAmenities = AMENITIES.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * 5) + 3)
-  const images = generateRandomImages(type, 5)
-  const geolocation = JSON.stringify({ lat: 37.7749 + (Math.random() - 0.5) * 0.1, lng: -122.4194 + (Math.random() - 0.5) * 0.1 })
-  const slug = generateSlug(title)
-  
-  const escapedDescription = `Experience the pinnacle of luxury living in this stunning ${type} located in ${city}.`.replace(/'/g, "''")
-  const escapedAddress = `${Math.floor(Math.random() * 900) + 100} ${city === 'Seattle' ? 'Pine St' : 'Ocean Dr'}, ${city}, USA`.replace(/'/g, "''")
-  
-  rows.push(`('${title}', '${escapedDescription}', ${price}, '${escapedAddress}', ${beds}, ${baths}, ${sqft}, ARRAY['${images.join("','")}'], ARRAY['${randomAmenities.join("','")}'], '${geolocation}', '${type}', '${i % 4 === 0 ? 'For Rent' : 'For Sale'}', ${i % 10 === 0}, ${i % 12 === 0}, ${i % 8 === 0}, '${slug}')`)
+  properties.push({
+    title,
+    description: `Luxury ${type} in ${city}`,
+    price,
+    address: `123 Luxury Way, ${city}`,
+    beds: 3,
+    baths: 2,
+    sqft: 2500,
+    images: getImages(),
+    amenities: ['Pool', 'Gym'],
+    geolocation: { lat: 0, lng: 0 },
+    type,
+    status: 'For Sale',
+    is_featured: true,
+    is_exclusive: true,
+    is_new_arrival: true,
+    slug: generateSlug(title)
+  });
 }
 
-sql += rows.join(",\n") + ";"
+const sql = `-- Limpiar tabla
+TRUNCATE public.properties CASCADE;
 
-fs.writeFileSync('supabase/seed.sql', sql)
-console.log('Seed SQL generated successfully in supabase/seed.sql')
+INSERT INTO public.properties (title, description, price, address, beds, baths, sqft, images, amenities, geolocation, type, status, is_featured, is_exclusive, is_new_arrival, slug) VALUES 
+${properties.map(p => `('${p.title}', '${p.description}', ${p.price}, '${p.address}', ${p.beds}, ${p.baths}, ${p.sqft}, ARRAY[${p.images.map(img => `'${img}'`).join(',')}], ARRAY[${p.amenities.map(a => `'${a}'`).join(',')}], '${JSON.stringify(p.geolocation)}', '${p.type}', '${p.status}', ${p.is_featured}, ${p.is_exclusive}, ${p.is_new_arrival}, '${p.slug}')`).join(',\n')};`;
+
+fs.writeFileSync('supabase/seed.sql', sql);
+console.log('Seed SQL generated successfully in supabase/seed.sql');

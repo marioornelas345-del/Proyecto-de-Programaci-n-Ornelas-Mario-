@@ -14,7 +14,7 @@ interface Profile {
 }
 
 export default function Dashboard() {
-  const { user, isLoading: isAuthLoading, logout } = useAuth()
+  const { user, isLoading: isAuthLoading, signOut } = useAuth()
   const [profile, setProfile] = useState<Profile | null>(null)
   const [isProfileLoading, setIsProfileLoading] = useState(true)
   const router = useRouter()
@@ -81,7 +81,7 @@ export default function Dashboard() {
         </div>
         <div className="flex gap-4">
           <button 
-            onClick={logout}
+            onClick={signOut}
             className="px-6 py-2 border border-red-200 text-red-500 rounded-md hover:bg-red-50 transition-colors font-medium"
           >
             Logout
